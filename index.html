@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>September Study Hub</title>
+
+  <meta name="description" content="September Study Hub is a cozy productivity app with a Pomodoro timer, notes, to-do list, calendar, flashcards, and a Lo-Fi music player — all in a warm September theme.">
+  <meta name="keywords" content="study app, pomodoro timer, productivity, notes, to-do list, calendar, flashcards, lofi music">
+  <meta name="author" content="Rainier-PS">
+
+  <meta property="og:title" content="September Study Hub">
+  <meta property="og:description" content="Boost your productivity with a cozy study hub. Pomodoro, notes, calendar, flashcards & more.">
+  <meta property="og:image" content="build/icon-512x512.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourwebsite.com">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="September Study Hub">
+  <meta name="twitter:description" content="All-in-one cozy study app with Pomodoro, notes, and Lo-Fi music.">
+  <meta name="twitter:image" content="build/icon-512x512.png">
+
+  <link rel="icon" type="image/x-icon" href="build/icon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="build/icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="build/icon-512x512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="build/icon-512x512.png">
+
+  <link rel="manifest" href="manifest.json">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2> September Study Hub</h2>
+        <a href="#pomodoro" class="sidebar-link active">Pomodoro / Stopwatch / Clock</a>
+        <a href="#notes" class="sidebar-link">Notes + Journal</a>
+        <a href="#todo" class="sidebar-link">To-Do List + Habit Tracker</a>
+        <a href="#calendar" class="sidebar-link">Calendar</a>
+        <a href="#flashcards" class="sidebar-link">Flashcards</a>
+        <a href="#music" class="sidebar-link">Lo-Fi Music Player</a>
+    </div>
+    <div class="main-content">
+        <!-- Pomodoro / Stopwatch / Clock -->
+        <section id="pomodoro" class="content-section active">
+            <div class="card pomodoro-main">
+                <h1>Pomodoro, Stopwatch & Clock</h1>
+                <div class="pomodoro-modes">
+                    <button id="mode-pomodoro" class="active">Pomodoro</button>
+                    <button id="mode-stopwatch">Stopwatch</button>
+                    <button id="mode-clock">Clock</button>
+                </div>
+                <div class="pomodoro-center">
+                    <div class="progress-circle" id="pomodoro-progress">
+                        <span id="pomodoro-time"></span>
+                    </div>
+                    <div class="clock-circle" id="clock-circle" style="display:none;">
+                        <span id="live-clock"></span>
+                    </div>
+                    <ul id="stopwatch-laps" class="stopwatch-laps"></ul>
+                </div>
+                <div class="pomodoro-controls" id="pomodoro-controls">
+                    <button id="start-pomodoro">Start</button>
+                    <button id="pause-pomodoro">Pause</button>
+                    <button id="reset-pomodoro">Reset</button>
+                </div>
+                <div class="stopwatch-controls" id="stopwatch-controls" style="display:none;">
+                    <button id="start-stopwatch">Start</button>
+                    <button id="lap-stopwatch">Lap</button>
+                    <button id="reset-stopwatch">Reset</button>
+                </div>
+                <div class="pomodoro-tip">
+                    <span id="pomodoro-tip-text">Tip: Stay focused for 25 minutes, then take a short break!</span>
+                </div>
+            </div>
+        </section>
+        <!-- Notes + Journal -->
+        <section id="notes" class="content-section">
+            <div class="card">
+                <h1>Notes</h1>
+                <div class="notes-editor">
+                    <div class="notes-toolbar">
+                        <button type="button" data-cmd="bold"><b>B</b></button>
+                        <button type="button" data-cmd="italic"><i>I</i></button>
+                        <button type="button" data-cmd="underline"><u>U</u></button>
+                    </div>
+                    <div id="notes-input" contenteditable="true" class="notes-input"></div>
+                    <button id="save-note">Save Note</button>
+                </div>
+                <div id="notes-list"></div>
+            </div>
+            <div class="card">
+                <h1>Journal</h1>
+                <div class="journal-section">
+                    <div class="mini-calendar">
+                        <input type="date" id="journal-date" />
+                    </div>
+                    <textarea id="journal-entry" rows="5" placeholder="Write your journal entry..."></textarea>
+                    <button id="save-journal">Save Entry</button>
+                </div>
+            </div>
+        </section>
+        <!-- To-Do List + Habit Tracker -->
+        <section id="todo" class="content-section">
+            <div class="card">
+                <h1>To-Do List</h1>
+                <div class="todo-form">
+                    <input type="text" id="todo-input" placeholder="Add a new task..." />
+                    <input type="date" id="todo-deadline-date" />
+                    <input type="time" id="todo-deadline-time" />
+                    <label class="todo-checkbox">
+                        <input type="checkbox" id="todo-allday" /> All Day
+                    </label>
+                    <select id="todo-priority">
+                        <option value="Low">Low Priority</option>
+                        <option value="Medium" selected>Medium Priority</option>
+                        <option value="High">High Priority</option>
+                        <option value="Urgent">Urgent</option>
+                    </select>
+                    <select id="todo-progress">
+                        <option value="Not Started" selected>Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                    <button id="add-todo">Add</button>
+                </div>
+                <ul id="todo-list"></ul>
+            </div>
+            <div class="card">
+                <h1>Habit Tracker</h1>
+                <input type="text" id="habit-input" placeholder="Add a new habit..." />
+                <button id="add-habit">Add Habit</button>
+                <button id="download-habits" class="habit-download-btn"> Download Data</button>
+                <div id="habit-metrics"></div>
+                <div id="habit-grid"></div>
+                <div id="habit-reward"></div>
+                <div id="habit-motivation"></div>
+            </div>
+        </section>
+        <!-- Calendar -->
+        <section id="calendar" class="content-section">
+            <div class="card">
+                <h1>Calendar</h1>
+                <div class="calendar-topbar">
+                    <div class="calendar-nav">
+                        <button id="prev-period" title="Previous"></button>
+                        <select id="calendar-view-mode">
+                            <option value="month">Month</option>
+                            <option value="week">Week</option>
+                            <option value="day">Day</option>
+                            <option value="year">Year</option>
+                        </select>
+                        <select id="calendar-month"></select>
+                        <select id="calendar-year"></select>
+                        <button id="next-period" title="Next"></button>
+                    </div>
+                    <button id="add-event-global" class="calendar-add-btn">+ Add Event</button>
+                </div>
+                <div id="calendar-view"></div>
+                <div id="calendar-details"></div>
+                <div id="calendar-event-form" style="display:none;">
+                    <h3 id="calendar-event-form-title">Add Event</h3>
+                    <input type="text" id="event-title" placeholder="Title (e.g. Math Exam, Project, Reminder)" />
+                    <select id="event-type">
+                        <option value="event">Event</option>
+                        <option value="task">Task</option>
+                        <option value="reminder">Reminder</option>
+                        <option value="deadline">Deadline</option>
+                    </select>
+                    <label class="calendar-checkbox">
+                        <input type="checkbox" id="event-allday" /> All Day
+                    </label>
+                    <input type="time" id="event-time" />
+                    <div id="notification-options">
+                        <label>Notifications (max 5):</label>
+                        <div id="notification-list"></div>
+                        <button type="button" id="add-notification-btn">+ Add Notification</button>
+                    </div>
+                    <button id="save-event">Save</button>
+                    <button id="cancel-event" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </section>
+        <!-- Flashcards -->
+        <section id="flashcards" class="content-section">
+            <div class="card">
+                <h1>Flashcards</h1>
+                <div class="flashcard-decks-controls">
+                    <input type="text" id="flashcard-deck-name" placeholder="New deck name..." />
+                    <button id="add-flashcard-deck">Add Deck</button>
+                </div>
+                <div id="flashcard-decks-list"></div>
+                <div id="flashcard-deck-section" style="display:none;">
+                    <div class="flashcard-deck-header">
+                        <span id="current-deck-name"></span>
+                        <button id="delete-flashcard-deck" class="delete-deck-btn" title="Delete this deck">Delete Deck</button>
+                        <button id="close-flashcard-deck" title="Close deck"></button>
+                    </div>
+                    <div class="flashcard-controls">
+                        <input type="text" id="flashcard-question" placeholder="Question" />
+                        <input type="text" id="flashcard-answer" placeholder="Answer" />
+                        <button id="add-flashcard">Add Card</button>
+                    </div>
+                    <div id="flashcard-review-summary"></div>
+                    <div id="flashcard-deck-cards-grid"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Lo-Fi Music Player -->
+        <section id="music" class="content-section">
+            <div class="card">
+                <h1>Lo-Fi Music Player</h1>
+                <div id="music-player">
+                    <iframe id="music-iframe" width="100%" height="320" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class="music-controls">
+                        <button id="prev-music">Prev</button>
+                        <button id="play-music">Play</button>
+                        <button id="next-music">Next</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Falling leaves animation -->
+    <div id="leaves-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
