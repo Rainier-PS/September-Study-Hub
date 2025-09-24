@@ -7,21 +7,24 @@ You can use it either:
 - As a **web app** (open `index.html` in your browser), or  
 - As a **desktop app** (Windows installer provided).  
 
+## Demo
+Try the web version here: [September Study Hub (Live Demo)](https://rainier-ps.github.io/September-Study-Hub/)
+
 ## Features
-- **Pomodoro Timer** – Stay focused with structured study/break sessions.  
-- **Notes** – Jot down quick thoughts, reminders, or journaling entries.  
-- **To-Do List** – Track tasks and assignments with a simple list manager.  
-- **Calendar** – Plan and organize your study schedule.  
-- **Flashcards** – Create and review flashcards for effective memorization.  
-- **Music Player** – Play background study music inside the app.  
+- **Pomodoro, Stopwatch, and Clock** – Stay focused with structured study sessions, or track time with a stopwatch and live clock.  
+- **Notes + Journal** – Take quick notes and write journal entries with date tracking.  
+- **To-Do List + Habit Tracker** – Manage tasks, set deadlines, track progress, and build habits.  
+- **Calendar** – Create events, reminders, and deadlines with multiple view modes.  
+- **Flashcards** – Create and review flashcards for efficient memorization.  
+- **Lo-Fi Music Player** – Stream background study music without leaving the app.  
 
 ## Installation (Desktop App)
 1. Download the latest release:  
-   👉 `September Study Hub Setup.exe` (Windows installer).  
-2. Run the installer and follow the prompts.  
+   `September Study Hub Setup.exe` (Windows installer).  
+2. Run the installer and follow the setup prompts.  
 3. Launch **September Study Hub** from your desktop or start menu.  
 
-## Setup for Development
+## Development Setup
 If you want to run or build the app yourself:
 
 ```bash
@@ -35,9 +38,9 @@ npm install
 # Run the app in development mode
 npm start
 
-# Build a distributable installer (Windows)
+# Build a distributable installer (currently Windows only)
 npm run dist
-````
+```
 
 ## Technologies Used
 
