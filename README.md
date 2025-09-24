@@ -83,7 +83,6 @@ Contributions are welcome!
 ## Acknowledgements
 
 * Codédex Monthly Challenge & GitHub Education Team
-* Assets from Adobe Firefly & Vecteezy
 * Microsoft Designer & Canva for the UI Elements
 
 ## License
