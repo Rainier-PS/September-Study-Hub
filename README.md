@@ -26,7 +26,7 @@ If you want to run or build the app yourself:
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Rainier-PS/September-Study-Hub.git
 cd September-Study-Hub
 
 # Install dependencies
