@@ -34,14 +34,22 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2> September Study Hub</h2>
-        <a href="#pomodoro" class="sidebar-link active">Pomodoro / Stopwatch / Clock</a>
-        <a href="#notes" class="sidebar-link">Notes + Journal</a>
-        <a href="#todo" class="sidebar-link">To-Do List + Habit Tracker</a>
-        <a href="#calendar" class="sidebar-link">Calendar</a>
-        <a href="#flashcards" class="sidebar-link">Flashcards</a>
-        <a href="#music" class="sidebar-link">Lo-Fi Music Player</a>
+    <h2>September Study Hub</h2>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+        <nav id="sidebar-links">
+            <a href="#pomodoro" class="sidebar-link active">Pomodoro / Stopwatch / Clock</a>
+            <a href="#notes" class="sidebar-link">Notes + Journal</a>
+            <a href="#todo" class="sidebar-link">To-Do List + Habit Tracker</a>
+            <a href="#calendar" class="sidebar-link">Calendar</a>
+            <a href="#flashcards" class="sidebar-link">Flashcards</a>
+            <a href="#music" class="sidebar-link">Lo-Fi Music Player</a>
+        </nav>
     </div>
+
     <div class="main-content">
         <!-- Pomodoro / Stopwatch / Clock -->
         <section id="pomodoro" class="content-section active">
