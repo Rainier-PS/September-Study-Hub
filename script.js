@@ -54,6 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener("DOMContentLoaded", () => {
     const menuBtn = document.getElementById("menu-toggle");
     const sidebarLinksContainer = document.getElementById("sidebar-links");
+    const sidebarLinks = Array.from(document.querySelectorAll(".sidebar-link"));
+    const contentSections = Array.from(document.querySelectorAll(".content-section"));
+
+    // navigation click handler
+    document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("menu-toggle");
+    const sidebarLinksContainer = document.getElementById("sidebar-links");
     const sidebarLinks = sidebarLinksContainer.querySelectorAll(".sidebar-link");
 
     if (menuBtn && sidebarLinksContainer) {
@@ -72,6 +79,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     });
+
+    // mobile menu toggle
+    if (menuBtn && sidebarLinksContainer) {
+        menuBtn.addEventListener("click", (e) => {
+        const isNowOpen = sidebarLinksContainer.classList.toggle("show");
+        menuBtn.classList.toggle("open", isNowOpen);
+        menuBtn.setAttribute("aria-expanded", String(!!isNowOpen));
+        });
+
+        // click outside to close
+        document.addEventListener("click", (e) => {
+        if (!sidebarLinksContainer.classList.contains("show")) return;
+        const target = e.target;
+        if (!sidebarLinksContainer.contains(target) && !menuBtn.contains(target)) {
+            sidebarLinksContainer.classList.remove("show");
+            menuBtn.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+        }
+        });
+
+        // close with Escape
+        document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sidebarLinksContainer.classList.contains("show")) {
+            sidebarLinksContainer.classList.remove("show");
+            menuBtn.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+            menuBtn.focus();
+        }
+        });
+    }
+    });
+
 
     // Start leaves if Pomodoro is the default active page
     if (document.getElementById('pomodoro').classList.contains('active')) {
