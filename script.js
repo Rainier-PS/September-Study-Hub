@@ -34,21 +34,43 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            // Remove active from all
+
             sidebarLinks.forEach(l => l.classList.remove('active'));
             contentSections.forEach(sec => sec.classList.remove('active'));
-            // Add active to clicked
+
             link.classList.add('active');
             const targetId = link.getAttribute('href').replace('#', '');
             document.getElementById(targetId).classList.add('active');
 
-            // Leaves only on Pomodoro page
             if (targetId === 'pomodoro') {
                 startLeaves();
             } else {
                 stopLeaves();
             }
         });
+    });
+
+    // --- Mobile Menu Toggle ---
+    document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("menu-toggle");
+    const sidebarLinksContainer = document.getElementById("sidebar-links");
+    const sidebarLinks = sidebarLinksContainer.querySelectorAll(".sidebar-link");
+
+    if (menuBtn && sidebarLinksContainer) {
+        menuBtn.addEventListener("click", () => {
+        sidebarLinksContainer.classList.toggle("show");
+        menuBtn.classList.toggle("open");
+        });
+
+        sidebarLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            if (sidebarLinksContainer.classList.contains("show")) {
+            sidebarLinksContainer.classList.remove("show");
+            menuBtn.classList.remove("open");
+            }
+        });
+        });
+    }
     });
 
     // Start leaves if Pomodoro is the default active page
