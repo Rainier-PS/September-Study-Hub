@@ -32,83 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Sidebar Navigation ---
     sidebarLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
 
-            sidebarLinks.forEach(l => l.classList.remove('active'));
-            contentSections.forEach(sec => sec.classList.remove('active'));
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        contentSections.forEach(sec => sec.classList.remove('active'));
 
-            link.classList.add('active');
-            const targetId = link.getAttribute('href').replace('#', '');
-            document.getElementById(targetId).classList.add('active');
+        link.classList.add('active');
+        const targetId = link.getAttribute('href').replace('#', '');
+        document.getElementById(targetId).classList.add('active');
 
-            if (targetId === 'pomodoro') {
-                startLeaves();
-            } else {
-                stopLeaves();
-            }
-        });
-    });
-
-    // --- Mobile Menu Toggle ---
-    document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.getElementById("menu-toggle");
-    const sidebarLinksContainer = document.getElementById("sidebar-links");
-    const sidebarLinks = Array.from(document.querySelectorAll(".sidebar-link"));
-    const contentSections = Array.from(document.querySelectorAll(".content-section"));
-
-    // navigation click handler
-    document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.getElementById("menu-toggle");
-    const sidebarLinksContainer = document.getElementById("sidebar-links");
-    const sidebarLinks = sidebarLinksContainer.querySelectorAll(".sidebar-link");
-
-    if (menuBtn && sidebarLinksContainer) {
-        menuBtn.addEventListener("click", () => {
-        sidebarLinksContainer.classList.toggle("show");
-        menuBtn.classList.toggle("open");
-        });
-
-        sidebarLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            if (sidebarLinksContainer.classList.contains("show")) {
-            sidebarLinksContainer.classList.remove("show");
-            menuBtn.classList.remove("open");
-            }
-        });
-        });
-    }
-    });
-
-    // mobile menu toggle
-    if (menuBtn && sidebarLinksContainer) {
-        menuBtn.addEventListener("click", (e) => {
-        const isNowOpen = sidebarLinksContainer.classList.toggle("show");
-        menuBtn.classList.toggle("open", isNowOpen);
-        menuBtn.setAttribute("aria-expanded", String(!!isNowOpen));
-        });
-
-        // click outside to close
-        document.addEventListener("click", (e) => {
-        if (!sidebarLinksContainer.classList.contains("show")) return;
-        const target = e.target;
-        if (!sidebarLinksContainer.contains(target) && !menuBtn.contains(target)) {
-            sidebarLinksContainer.classList.remove("show");
-            menuBtn.classList.remove("open");
-            menuBtn.setAttribute("aria-expanded", "false");
+        if (targetId === 'pomodoro') {
+        startLeaves();
+        } else {
+        stopLeaves();
         }
-        });
-
-        // close with Escape
-        document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && sidebarLinksContainer.classList.contains("show")) {
-            sidebarLinksContainer.classList.remove("show");
-            menuBtn.classList.remove("open");
-            menuBtn.setAttribute("aria-expanded", "false");
-            menuBtn.focus();
-        }
-        });
-    }
+    });
     });
 
 
