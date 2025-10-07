@@ -1,12 +1,9 @@
-// filepath: c:\Users\raini\Downloads\september-study-hub\script.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const contentSections = document.querySelectorAll('.content-section');
     const leavesContainer = document.getElementById('leaves-container');
     let leavesInterval = null;
 
-    // --- Falling Leaves Animation ---
     function createLeaf() {
         const leaf = document.createElement('div');
         leaf.className = 'leaf';
@@ -30,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         leavesContainer.innerHTML = '';
     }
 
-    // --- Sidebar Navigation ---
     sidebarLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -50,13 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     });
 
-
-    // Start leaves if Pomodoro is the default active page
     if (document.getElementById('pomodoro').classList.contains('active')) {
         startLeaves();
     }
 
-    // --- Pomodoro / Stopwatch / Clock ---
     let pomodoroMode = 'pomodoro';
     let pomodoroInterval = null;
     let pomodoroTime = 25 * 60;
@@ -75,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let min = Math.floor(pomodoroTime / 60);
         let sec = pomodoroTime % 60;
         pomodoroDisplay.textContent = `${min}:${sec < 10 ? '0' : ''}${sec}`;
-        // Progress circle (simple fill)
         let percent = (pomodoroTime / (25 * 60)) * 100;
         progressCircle.style.background = `conic-gradient(#ff9966 ${percent}%, #f2e6d4 ${percent}% 100%)`;
     }
@@ -127,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('mode-stopwatch').onclick = () => switchPomodoroMode('stopwatch');
     document.getElementById('mode-clock').onclick = () => switchPomodoroMode('clock');
 
-    // --- Pomodoro controls ---
     document.getElementById('start-pomodoro').onclick = () => {
         if (pomodoroMode === 'pomodoro') {
             if (pomodoroInterval) return;
@@ -161,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Stopwatch controls ---
     document.getElementById('start-stopwatch').onclick = () => {
         if (pomodoroMode === 'stopwatch') {
             if (stopwatchRunning) return;
@@ -197,8 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePomodoroDisplay();
 
-
-    // --- Notes ---
     const notesInput = document.getElementById('notes-input');
     const notesList = document.getElementById('notes-list');
     function loadNotes() {
@@ -222,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     loadNotes();
 
-    // --- Journal ---
     const journalDate = document.getElementById('journal-date');
     const journalEntry = document.getElementById('journal-entry');
     function loadJournal() {
@@ -241,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     loadJournal();
 
-    // --- To-Do List ---
     const todoInput = document.getElementById('todo-input');
     const todoList = document.getElementById('todo-list');
     const todoDeadlineDate = document.getElementById('todo-deadline-date');
@@ -258,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let todos = JSON.parse(localStorage.getItem('todos') || '[]');
         const now = Date.now();
 
-        // Auto-delete completed >24h ago or missed deadline >24h ago
         todos = todos.filter(t => {
             if (t.progress === 'Done' && t.completedAt && now - t.completedAt < 24*60*60*1000) return true;
             if (t.progress === 'Done' && t.completedAt && now - t.completedAt >= 24*60*60*1000) return false;
@@ -362,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadTodos();
 
-    // --- Habit Tracker ---
     const habitInput = document.getElementById('habit-input');
     const habitGrid = document.getElementById('habit-grid');
     const habitReward = document.getElementById('habit-reward');
@@ -404,7 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const habits = JSON.parse(localStorage.getItem('habits') || '[]');
         const weekDays = getCurrentWeekDates();
 
-        // Only show current week in UI
         let html = `<table class="habit-table"><tr><th>Habit</th>`;
         for (let i = 0; i < 7; i++) {
             html += `<th>${['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i]}</th>`;
@@ -436,8 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
         html += `</table>`;
         habitGrid.innerHTML = html;
 
-        // --- Metrics ---
-        // This week
         let total = 0, completed = 0;
         habits.forEach(h => {
             weekDays.forEach(dayStr => {
@@ -447,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         let percent = total ? Math.round((completed / total) * 100) : 0;
 
-        // Last week
         const lastWeekDays = getLastWeekDates();
         let lastTotal = 0, lastCompleted = 0;
         habits.forEach(h => {
@@ -459,7 +439,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let lastPercent = lastTotal ? Math.round((lastCompleted / lastTotal) * 100) : 0;
         let diff = percent - lastPercent;
 
-        // Overall
         let allDays = [];
         habits.forEach(h => {
             if (h.days) allDays = allDays.concat(Object.keys(h.days));
@@ -474,7 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         let overallPercent = overallTotal ? Math.round((overallCompleted / overallTotal) * 100) : 0;
 
-        // Streaks (best and current, all habits done for a day)
         function getStreaks() {
             let streak = 0, best = 0;
             let days = allDays.sort();
@@ -495,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 prevDate = day;
             }
-            // Current streak for this week
+
             let today = weekDays[weekDays.length-1];
             let curStreak = 0;
             for (let i = weekDays.length-1; i >= 0; i--) {
@@ -516,7 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>Current Streak: <span>${streaks.current} days</span></div>
         `;
 
-        // --- Motivation ---
         let message = '';
         if (percent === 100) {
             message = "🌟 Amazing! You completed all your habits this week!";
@@ -533,7 +510,6 @@ document.addEventListener('DOMContentLoaded', () => {
         habitMotivation.innerHTML = `<div class="habit-motivation-msg">${message}</div>`;
     }
 
-    // --- Download Habit Data as CSV ---
     downloadHabitsBtn.onclick = () => {
         const habits = JSON.parse(localStorage.getItem('habits') || '[]');
         let allDays = [];
@@ -571,7 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     loadHabits();
 
-    // --- Calendar with Navigation, Views, Events, Notifications ---
     const calendarView = document.getElementById('calendar-view');
     const calendarDetails = document.getElementById('calendar-details');
     const calendarMonth = document.getElementById('calendar-month');
@@ -824,7 +799,6 @@ document.addEventListener('DOMContentLoaded', () => {
         details += `<button id="add-event-btn";">Add Event/Task/Reminder</button>`;
         calendarDetails.innerHTML = details;
 
-        // Delete event
         document.querySelectorAll('.delete-event-btn').forEach(btn => {
             btn.onclick = () => {
                 let idx = parseInt(btn.getAttribute('data-idx'));
@@ -917,7 +891,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCalendar();
 
-    // --- Flashcards with Decks ---
     const deckNameInput = document.getElementById('flashcard-deck-name');
     const addDeckBtn = document.getElementById('add-flashcard-deck');
     const decksList = document.getElementById('flashcard-decks-list');
@@ -1030,21 +1003,18 @@ document.addEventListener('DOMContentLoaded', () => {
         deckCardsGrid.innerHTML = '';
         cards.forEach((fc, idx) => {
             const state = cardReviewState[idx] || {flipped: false, answer: null};
-            // Card container
-            const cardContainer = document.createElement('div');
-            cardContainer.className = 'flashcard'; // match CSS
 
-            // Card inner
+            const cardContainer = document.createElement('div');
+            cardContainer.className = 'flashcard';
+
             const cardInner = document.createElement('div');
             cardInner.className = 'flashcard-inner';
 
-            // Front + Back
             cardInner.innerHTML = `
                 <div class="front">${fc.q}</div>
                 <div class="back">${fc.a}</div>
             `;
 
-            // Flip logic
             cardContainer.onclick = () => {
                 state.flipped = !state.flipped;
                 cardContainer.classList.toggle('flipped', state.flipped);
@@ -1053,7 +1023,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardContainer.appendChild(cardInner);
 
-            // Actions (always below the card)
             const actions = document.createElement('div');
             actions.className = 'flashcard-grid-actions-below';
             actions.style.visibility = state.flipped ? 'visible' : 'hidden';
@@ -1121,7 +1090,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderDecks();
 
-    // --- Lo-Fi Music Player ---
     const musicList = [
         "https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1",
         "https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1",
@@ -1141,4 +1109,3 @@ document.addEventListener('DOMContentLoaded', () => {
         musicIframe.src = musicList[musicIndex];
     };
 });
-
