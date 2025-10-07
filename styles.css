@@ -1,4 +1,3 @@
-/* --- Cozy Fall September Study Hub Theme --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
 
 :root {
@@ -232,8 +231,6 @@ h3 { font-size: 1.5rem; }
     overflow: hidden;
 }
 
-
-/* Dropdowns */
 #calendar-view-mode,
 #calendar-month,
 #calendar-year,
@@ -257,7 +254,6 @@ h3 { font-size: 1.5rem; }
     box-shadow: 0 0 0 3px rgba(200, 50, 50, 0.2);
 }
 
-/* Inputs */
 #event-title,
 #event-time {
     width: 100%;
@@ -276,7 +272,6 @@ h3 { font-size: 1.5rem; }
     box-shadow: 0 0 0 3px rgba(200, 50, 50, 0.2);
 }
 
-/* Checkbox */
 .calendar-checkbox {
     display: flex;
     align-items: center;
@@ -288,7 +283,6 @@ h3 { font-size: 1.5rem; }
     transform: scale(1.2);
 }
 
-/* Add Event button (styled like other primary buttons) */
 #add-event-btn {
     border: none;
     border-radius: 8px;
@@ -299,18 +293,15 @@ h3 { font-size: 1.5rem; }
     cursor: pointer;
     transition: all 0.3s ease;
 
-    /* match primary gradient style */
     background: linear-gradient(135deg, var(--accent-brown), var(--accent-red));
     color: var(--text-light);
     box-shadow: 0 4px 12px var(--shadow-warm);
 }
 
-/* Hover effect (consistent with other primary buttons) */
 #add-event-btn:hover {
     transform: translateY(-2px);
 }
 
-/* Secondary buttons */
 #save-event,
 #cancel-event,
 #add-notification-btn {
@@ -324,7 +315,6 @@ h3 { font-size: 1.5rem; }
     transition: all 0.3s ease;
 }
 
-/* Primary: Save & Add Notification */
 #save-event,
 #add-notification-btn {
     background: linear-gradient(135deg, var(--accent-brown), var(--accent-red));
@@ -336,7 +326,6 @@ h3 { font-size: 1.5rem; }
     transform: translateY(-2px);
 }
 
-/* Secondary: Cancel */
 #cancel-event {
     background: var(--card-bg, #f5f5f5);
     color: var(--accent-brown);
@@ -590,7 +579,6 @@ h3 { font-size: 1.5rem; }
     }
 }
 
-/* Stopwatch Controls */
 .stopwatch-controls {
     display: flex;
     justify-content: center;
@@ -626,7 +614,6 @@ h3 { font-size: 1.5rem; }
     transform: translateY(0) scale(0.98);
 }
 
-/* Clock Circle */
 .clock-circle {
     width: 200px;
     height: 200px;
@@ -685,7 +672,6 @@ h3 { font-size: 1.5rem; }
     border-left: 3px solid var(--accent-yellow);
 }
 
-/* Flashcard Grid */
 #flashcard-deck-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -798,7 +784,6 @@ h3 { font-size: 1.5rem; }
     box-shadow: 0 4px 12px var(--shadow-warm);
 }
 
-/* Responsive Design */
 @media (max-width: 900px) {
     .sidebar {
         width: 100vw;
@@ -848,7 +833,6 @@ h3 { font-size: 1.5rem; }
         margin: 0.5rem 0;
     }
 
-    /* Pomodoro circle */
     .progress-circle,
     .clock-circle {
         width: 120px;
@@ -863,7 +847,6 @@ h3 { font-size: 1.5rem; }
         min-height: 80px;
     }
 
-    /* Make forms stack vertically */
     .todo-form,
     .flashcard-controls,
     .notes-toolbar,
@@ -937,7 +920,6 @@ h3 { font-size: 1.5rem; }
     margin: 0 auto;
 }
 
-/* Habit Tracker Grid */
 #habit-grid {
     display: grid;
     grid-auto-flow: column;
@@ -1021,7 +1003,6 @@ textarea:focus {
     margin: 1rem 0;
 }
 
-/* Additional missing styles */
 .pomodoro-modes {
     display: flex;
     justify-content: center;
@@ -1621,7 +1602,6 @@ textarea:focus {
     box-shadow: 0 6px 20px var(--shadow-warm);
 }
 
-/* Notification options */
 #notification-options {
     margin: 1rem 0;
     padding: 1rem;
@@ -1721,7 +1701,6 @@ textarea:focus {
     box-shadow: 0 6px 20px var(--shadow-warm);
 }
 
-/* Calendar view styles */
 .calendar-view-week,
 .calendar-view-day,
 .calendar-view-year {
@@ -1756,7 +1735,6 @@ textarea:focus {
     font-size: 1.1rem;
 }
 
-/* Habit download button */
 .habit-download-btn {
     background: linear-gradient(135deg, var(--accent-brown), var(--accent-red));
     color: var(--text-light);
